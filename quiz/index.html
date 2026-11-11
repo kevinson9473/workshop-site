@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1f4a3b"><meta name="description" content="회사 워크숍 진행자용 퀴즈 화면">
+<title>PLAYROOM — 워크숍 퀴즈</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="questions.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<div class="board-screen">
+  <header class="board-bar">
+    <div class="brand">PLAYROOM<span>.</span> <small>워크숍 퀴즈</small></div>
+    <div class="board-progress" aria-live="polite">
+      <div class="progress-track"><i id="overall-fill"></i></div>
+      <span><b id="completed-count">0</b> / <span data-total-questions>19</span> 완료</span>
+    </div>
+    <div class="board-actions">
+      <button id="start" class="btn btn-primary">▶ 이어서 시작</button>
+      <button id="fullscreen" class="btn btn-ghost" title="전체 화면 (F)">⛶ 전체 화면</button>
+    </div>
+  </header>
+  <main id="category-grid" class="board" aria-label="퀴즈 라운드"></main>
+  <footer class="key-legend" aria-label="키보드 단축키">
+    <span><kbd>Space</kbd> 정답 공개</span><span><kbd>H</kbd> 힌트</span><span><kbd>T</kbd> 타이머</span><span><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> 노래 처음·하이라이트·뮤비</span><span><kbd>←</kbd><kbd>→</kbd> 이전·다음</span><span><kbd>F</kbd> 전체 화면</span><span><kbd>Esc</kbd> 목록으로</span>
+    <button id="reset" class="legend-reset">진행 기록 초기화</button>
+  </footer>
+</div>
+
+<dialog id="quiz-dialog" class="quiz" aria-labelledby="question-title">
+  <div class="quiz-frame">
+    <header class="quiz-bar">
+      <div class="quiz-where"><span class="round-chip" id="question-round"></span><span class="quiz-cat" id="question-category"></span></div>
+      <nav class="quiz-dots" id="question-dots" aria-label="이 라운드의 문제"></nav>
+      <div class="quiz-bar-actions">
+        <span class="quiz-index" id="question-index"></span>
+        <button id="quiz-fullscreen" class="icon-btn" title="전체 화면 (F)" aria-label="전체 화면">⛶</button>
+        <button id="close-quiz" class="btn btn-ghost" title="목록으로 (Esc)">✕ 목록</button>
+      </div>
+    </header>
+    <div class="quiz-head">
+      <h1 id="question-title"></h1>
+      <button id="timer" class="timer" title="20초 타이머 (T)" aria-label="20초 타이머 시작">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="timer-track" cx="50" cy="50" r="45"/><circle class="timer-arc" id="timer-arc" cx="50" cy="50" r="45"/></svg>
+        <b id="timer-value">20</b><span id="timer-label">시작 · T</span>
+      </button>
+    </div>
+    <div class="hint-banner" id="hint-panel" hidden></div>
+    <div class="quiz-stage">
+      <div id="question-media" class="stage-media"></div>
+      <aside class="answer" id="answer-panel" hidden></aside>
+    </div>
+    <footer class="quiz-controls">
+      <button id="previous" class="btn btn-ghost btn-lg">← 이전</button>
+      <button id="hint-button" class="btn btn-soft btn-lg">💡 힌트 <kbd>H</kbd></button>
+      <span class="timer-status" id="timer-status" role="status" aria-live="polite"></span>
+      <button id="reveal" class="btn btn-primary btn-xl">정답 공개 <kbd>Space</kbd></button>
+      <button id="next" class="btn btn-ghost btn-lg">다음 →</button>
+    </footer>
+  </div>
+</dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body></html>

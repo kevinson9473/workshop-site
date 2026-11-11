@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+/* ── 토큰 ─────────────────────────────────────────── */
+:root{
+  --paper:#f2f4ec; --card:#fffffd; --ink:#13261f; --muted:#5d6b61; --line:#d8dfcd;
+  --forest:#1f4a3b; --forest-2:#2d6351; --lime:#d6ee6f; --lime-2:#b9dc3f;
+  --stage:#10211a; --stage-2:#0a1712; --warn:#c2603c; --ai-bg:#f3d2c8; --ai-ink:#6b2418;
+  --display:'Black Han Sans','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+  --body:'Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+  --mono:'DM Sans','Segoe UI',sans-serif;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.5 var(--body);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:disabled{opacity:.35;cursor:default}
+:focus-visible{outline:4px solid var(--lime-2);outline-offset:3px}
+[hidden]{display:none!important}
+.display{font-family:var(--display);font-weight:800;font-synthesis:none}
+kbd{display:inline-block;min-width:1.7em;padding:.1em .45em;border-radius:6px;border:1px solid currentColor;border-bottom-width:3px;font:700 .72em/1.4 var(--mono);text-align:center;opacity:.8;vertical-align:.08em}
+
+/* ── 버튼 ─────────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:12px;padding:12px 20px;font-weight:700;font-size:18px;line-height:1.2;transition:background .15s,transform .1s;white-space:nowrap}
+.btn:active:not(:disabled){transform:translateY(1px)}
+.btn-primary{background:var(--forest);color:var(--lime)}
+.btn-primary:hover:not(:disabled){background:var(--forest-2)}
+.btn-ghost{background:var(--card);border:2px solid var(--line);color:var(--ink)}
+.btn-ghost:hover:not(:disabled){border-color:var(--forest-2)}
+.btn-soft{background:#f7efcf;color:#6b5420;border:2px solid #ead99a}
+.btn-soft:hover:not(:disabled){background:#f3e6b4}
+.btn-lg{font-size:20px;padding:14px 22px}
+.btn-xl{font-size:24px;padding:16px 30px;min-width:240px}
+.icon-btn{width:48px;height:48px;border-radius:12px;font-size:24px;display:grid;place-items:center;border:2px solid var(--line);background:var(--card)}
+.icon-btn:hover{border-color:var(--forest-2)}
+
+/* ── 메뉴 (퀴즈 보드) ─────────────────────────────── */
+.board-screen{height:100vh;height:100dvh;display:grid;grid-template-rows:auto 1fr auto;min-height:620px}
+.board-bar{display:flex;align-items:center;gap:28px;padding:16px 28px;border-bottom:2px solid var(--line);background:var(--card)}
+.brand{font:400 30px/1 var(--display);letter-spacing:.5px;color:var(--forest);font-synthesis:none}
+.brand span{color:var(--lime-2)}
+.brand small{font:700 16px var(--body);color:var(--muted);letter-spacing:0;margin-left:10px;vertical-align:4px}
+.board-progress{display:flex;align-items:center;gap:14px;margin-left:auto;font-size:18px;color:var(--muted)}
+.board-progress b{color:var(--forest);font:700 24px var(--mono)}
+.progress-track{width:180px;height:10px;border-radius:10px;background:#e3e8da;overflow:hidden}
+.progress-track i{display:block;height:100%;width:0;background:var(--forest);transition:width .3s}
+.board-actions{display:flex;gap:10px}
+
+.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding:20px 28px;min-height:0}
+.round{display:flex;flex-direction:column;min-height:0;background:var(--card);border:2px solid var(--line);border-radius:18px;overflow:hidden}
+.round-head{background:var(--tint);padding:18px 20px 16px;position:relative}
+.round-top{display:flex;align-items:center;gap:10px;height:26px;font:700 14px var(--mono);letter-spacing:1.5px;color:#3c5446}
+.round-name{font:400 clamp(28px,2.5vw,42px)/1.15 var(--display);margin:8px 0 4px;font-synthesis:none;letter-spacing:-.5px}
+.round-how{font-size:17px;color:#425449;margin:0;font-weight:500}
+.round-count{position:absolute;right:18px;top:16px;font:700 16px var(--mono);color:#3c5446}
+.tiles{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,minmax(0,1fr));gap:10px;padding:14px}
+.tile{border-radius:14px;border:2px solid var(--line);background:#fbfcf7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:64px;transition:transform .12s,border-color .12s,background .12s}
+.tile:hover{transform:translateY(-2px);border-color:var(--forest-2);background:#f3f7e8}
+.tile b{font:400 clamp(30px,3vw,52px)/1 var(--display);font-synthesis:none;color:var(--forest)}
+.tile small{font:700 14px var(--mono);letter-spacing:1px;color:var(--muted)}
+.tile.done{background:var(--forest);border-color:var(--forest)}
+.tile.done b{color:var(--lime)}
+.tile.done b:before{content:'✓ ';font-size:.55em;vertical-align:.25em}
+.tile.done small{color:#a9c7b6}
+
+.ai-sticker{display:inline-block;font:700 13px/1 var(--mono);letter-spacing:.5px;color:var(--lime);background:var(--forest);padding:6px 9px 5px;border-radius:6px;transform:rotate(-5deg);box-shadow:2px 2px 0 var(--lime-2)}
+.ai-sticker:before{content:'✦ '}
+
+.key-legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 26px;padding:12px 28px;border-top:2px solid var(--line);background:var(--card);font-size:16px;color:var(--muted)}
+.key-legend kbd{color:var(--ink);margin-right:4px}
+.legend-reset{margin-left:auto;font-size:15px;color:var(--muted);text-decoration:underline;text-underline-offset:4px}
+.legend-reset:hover{color:var(--warn)}
+
+/* ── 문제 화면 ─────────────────────────────────────── */
+.quiz{padding:0;border:0;margin:0;width:100vw;max-width:100vw;height:100vh;height:100dvh;max-height:100dvh;background:var(--paper);color:var(--ink)}
+.quiz::backdrop{background:#0b1813}
+.quiz-frame{height:100%;display:flex;flex-direction:column}
+.quiz-bar{display:flex;align-items:center;gap:20px;padding:12px 24px;background:var(--card);border-bottom:2px solid var(--line)}
+.quiz-where{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:700}
+.round-chip{background:var(--forest);color:var(--lime);font:700 15px var(--mono);letter-spacing:1px;padding:7px 11px;border-radius:8px}
+.quiz-cat .ai-sticker{margin-left:8px;font-size:14px}
+.quiz-dots{display:flex;gap:8px;margin:0 auto}
+.quiz-dot{width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:var(--card);font:700 16px var(--mono);color:var(--muted)}
+.quiz-dot.done{background:#e3ecd3;border-color:#c5d5ad;color:var(--forest)}
+.quiz-dot.current{background:var(--forest);border-color:var(--forest);color:var(--lime);transform:scale(1.12)}
+.quiz-bar-actions{display:flex;align-items:center;gap:10px}
+.quiz-index{font:700 16px var(--mono);color:var(--muted);margin-right:6px}
+
+.quiz-head{display:flex;align-items:center;gap:24px;padding:18px 28px 10px}
+.quiz-head h1{flex:1;margin:0;font:400 clamp(34px,3.6vw,64px)/1.15 var(--display);font-synthesis:none;letter-spacing:-.5px}
+.timer{position:relative;width:118px;height:118px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;background:var(--card)}
+.timer svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.timer circle{fill:none;stroke-width:7}
+.timer-track{stroke:#e2e8d8}
+.timer-arc{stroke:var(--forest);stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:0;transition:stroke-dashoffset .1s linear,stroke .2s}
+.timer b{position:relative;font:700 44px/1 var(--mono)}
+.timer span{position:relative;font:700 12px var(--body);color:var(--muted);margin-top:4px}
+.timer.running .timer-arc{stroke:var(--lime-2)}
+.timer.low .timer-arc{stroke:var(--warn)}.timer.low b{color:var(--warn)}
+.timer.expired b{color:var(--warn)}
+
+.hint-banner{margin:0 28px 8px;padding:14px 20px;border-radius:12px;background:#f7efcf;border:2px solid #ead99a;color:#5c4818;font-size:22px;font-weight:700}
+.hint-banner:before{content:'💡 '}
+
+.quiz-stage{flex:1;display:flex;gap:18px;padding:8px 28px 14px;min-height:0}
+.stage-media{flex:1;min-width:0;border-radius:var(--r);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;background:#e7ecdc;border:2px solid var(--line)}
+.stage-media img{display:block;width:100%;height:100%;object-fit:contain;padding:12px}
+.stage-media.poster{background:#fff}
+.stage-media.video{background:var(--stage);border-color:var(--stage)}
+.stage-media.song{background:var(--stage);border-color:var(--stage);color:#eaf3df}
+
+.answer{width:min(36%,560px);flex-shrink:0;border-radius:var(--r);background:var(--card);border:3px solid var(--forest);padding:22px 26px;overflow:auto;animation:pop .35s ease-out}
+.answer-label{display:inline-block;background:var(--forest);color:var(--lime);font:700 15px var(--mono);letter-spacing:2px;padding:6px 10px;border-radius:7px}
+.answer h2{margin:12px 0 10px;font:400 clamp(34px,3.2vw,58px)/1.15 var(--display);font-synthesis:none;color:var(--forest);word-break:keep-all}
+.answer p{margin:0;font-size:18px;line-height:1.7;color:#334339;word-break:keep-all}
+.answer img{width:100%;max-height:34vh;object-fit:contain;border-radius:10px;margin-top:14px;background:#f2f4ec}
+.answer details{margin-top:16px;border-top:2px solid var(--line);padding-top:10px;font-size:15px;color:var(--muted)}
+.answer summary{cursor:pointer;font-weight:700}
+.answer details a{display:block;margin:6px 0;color:var(--forest-2)}
+.answer .credit{font-size:13px;margin-top:6px}
+@keyframes pop{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+
+.quiz-controls{display:flex;align-items:center;gap:14px;padding:14px 28px;background:var(--card);border-top:2px solid var(--line)}
+.timer-status{flex:1;text-align:center;font-size:18px;color:var(--muted);font-weight:500}
+#reveal kbd,#hint-button kbd{font-size:.62em}
+
+/* 영상: 두 영상 비교 */
+.pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;height:100%;padding:14px}
+.pair-clip{margin:0;position:relative;border-radius:12px;overflow:hidden;background:var(--stage-2);display:flex;flex-direction:column;min-height:0}
+.pair-clip video{flex:1;min-height:0;width:100%;object-fit:contain;background:var(--stage-2);cursor:pointer}
+.pair-label{position:absolute;top:12px;left:12px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--forest);font:400 32px/1 var(--display);font-synthesis:none;box-shadow:0 3px 10px #0005}
+.pair-pick{margin:10px;padding:12px;border-radius:10px;background:#ffffff14;color:#eaf3df;font-size:20px;font-weight:700;border:2px solid #ffffff22}
+.pair-pick:hover:not(:disabled){background:#ffffff26}
+.pair-pick:disabled{opacity:1;cursor:default}
+.pair-clip.is-ai .pair-pick{opacity:.45}
+.pair-pick.selected{background:var(--lime);color:var(--forest);border-color:var(--lime)}
+.pair-verdict{display:none;position:absolute;top:14px;right:14px;padding:9px 16px;border-radius:24px;font:700 20px var(--body)}
+.pair-clip.is-real{box-shadow:inset 0 0 0 6px var(--lime)}
+.pair-clip.is-real .pair-verdict{display:block;background:var(--lime);color:var(--forest)}
+.pair-clip.is-real .pair-pick{background:var(--lime);color:var(--forest)}
+.pair-clip.is-ai video{opacity:.6}
+.pair-clip.is-ai .pair-verdict{display:block;background:var(--ai-bg);color:var(--ai-ink)}
+.pair-empty{flex:1;margin:14px;border:3px dashed #3f5d4f;border-radius:12px;display:grid;place-items:center;text-align:center;color:#8aa293;font-size:20px}
+.media-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-60%);width:120px;height:120px;border-radius:50%;background:var(--lime);color:var(--forest);font-size:46px;padding-left:10px;box-shadow:0 8px 30px #0007;z-index:2}
+.media-play.hidden{display:none}
+.media-restart{position:absolute;left:50%;bottom:72px;transform:translateX(-50%);z-index:2;background:#000a;color:#fff;border-radius:22px;padding:8px 16px;font-size:16px}
+
+/* 노래 */
+.song-scene{display:grid;grid-template-columns:minmax(0,auto) 1fr;align-items:center;gap:clamp(24px,4vw,64px);padding:24px clamp(24px,5vw,80px);width:100%}
+.disc{width:clamp(160px,22vh,260px);aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle,#24443a 0 2px,#2e5546 3px 5px);border:10px solid #e0e9c9;display:grid;place-items:center}
+.disc:before{content:'♪';display:grid;place-items:center;width:38%;aspect-ratio:1;border-radius:50%;background:var(--lime);color:var(--forest);font-size:clamp(28px,4vh,48px)}
+.disc.playing{animation:spin 3s linear infinite}
+.song-era{font:700 18px var(--mono);letter-spacing:3px;color:var(--lime)}
+.song-buttons{display:flex;gap:14px;margin:18px 0 14px;flex-wrap:wrap}
+.song-buttons button{min-width:150px;padding:20px 26px;border-radius:16px;background:#ffffff14;border:2px solid #ffffff30;color:#fff;font:400 clamp(28px,2.6vw,44px)/1 var(--display);font-synthesis:none}
+.song-buttons button:hover{background:#ffffff26}
+.song-buttons button.playing{background:var(--lime);color:var(--forest);border-color:var(--lime)}
+.song-buttons button.played:not(.playing){border-color:var(--lime-2)}
+.song-stop{color:#b8cbbf;font-size:17px;text-decoration:underline;text-underline-offset:4px}
+.song-status{margin-top:12px;font-size:20px;color:#cfe0d4;min-height:30px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* 토스트 */
+.toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);z-index:50;padding:14px 22px;border-radius:12px;background:var(--forest);color:#fff;font-size:18px;box-shadow:0 8px 24px #0003;display:none}
+.toast.visible{display:block}
+
+/* ── 작은 화면 ─────────────────────────────────────── */
+@media (max-width:1100px){
+  .board{grid-template-columns:repeat(2,minmax(0,1fr));overflow:auto}
+  .board-screen{height:auto;min-height:100vh}
+  .tiles{grid-template-rows:none;grid-auto-rows:84px}
+  .answer{width:42%}
+}
+@media (max-width:700px){
+  body{font-size:16px}
+  .board{grid-template-columns:1fr;padding:14px}
+  .board-bar{flex-wrap:wrap;gap:12px;padding:12px 14px}
+  .board-progress{margin-left:0}
+  .progress-track{width:110px}
+  .key-legend{display:none}
+  .quiz{overflow:auto}
+  .quiz-frame{height:auto;min-height:100%}
+  .quiz-dots{display:none}
+  .quiz-head{padding:14px}
+  .timer{width:84px;height:84px}.timer b{font-size:30px}
+  .quiz-stage{flex-direction:column;padding:8px 14px}
+  .stage-media{min-height:56vh}
+  .answer{width:100%}
+  .quiz-controls{flex-wrap:wrap;padding:12px 14px}
+  .timer-status{display:none}
+  .btn-xl{min-width:0;flex:1}
+  .song-scene{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .song-buttons{justify-content:center}
+  .quiz-bar{padding:10px 14px;gap:8px}
+  .quiz-where{flex:1;min-width:0;font-size:16px;flex-wrap:wrap;gap:6px}
+  .quiz-index,#quiz-fullscreen{display:none}
+  .quiz-head h1{font-size:28px}
+  .btn-lg{font-size:16px;padding:10px 14px}
+  .btn-xl{font-size:18px;padding:12px 16px}
+  .quiz-controls kbd{display:none}
+  .media-restart{bottom:auto;top:12px}
+  .pair-pick{font-size:15px;padding:8px;margin:8px}
+  .pair-label{width:40px;height:40px;font-size:22px}
+  .media-play{width:84px;height:84px;font-size:32px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* 노래: 유튜브 플레이어를 가림막(디스크) 뒤에 두고 정답 공개 때 걷어냄 */
+.song-screen{position:relative;width:clamp(280px,34vw,600px);aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 0 0 3px #ffffff1f}
+.song-player,.song-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.song-cover{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#24443a,#10211a 70%);transition:opacity .6s ease}
+.song-cover .disc{width:auto;height:78%}
+.song-scene.revealed .song-cover{opacity:0;pointer-events:none}
+.song-buttons button kbd{font:600 15px var(--mono);margin-left:8px;padding:2px 7px;border-radius:6px;background:#ffffff1f;vertical-align:middle}
+.song-buttons button.playing kbd{background:#1f4a3b22}
+.song-full{display:none}
+.song-scene.revealed .song-full{display:inline-block}
+.song-buttons button{white-space:nowrap}
+.song-scene.revealed{grid-template-columns:1fr;justify-items:center;text-align:center;gap:14px;padding:16px 20px}
+.song-scene.revealed .song-screen{width:min(100%,520px)}
+.song-scene.revealed .song-era{display:none}
+.song-scene.revealed .song-buttons{justify-content:center;margin:0 0 8px}
+.song-scene.revealed .song-buttons button{min-width:0;padding:12px 18px;font-size:clamp(20px,1.8vw,28px)}
+.song-scene.revealed .song-status{font-size:17px;margin-top:6px}
