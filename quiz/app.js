@@ -91,7 +91,7 @@ function stopMedia() {
 }
 
 function renderChoice(area, q) {
-  area.innerHTML = `<div class="choice-grid ${q.choices.every((c) => c.length === 1) ? 'single' : ''}">${q.choices
+  area.innerHTML = `<div class="choice-grid ${q.choices.every((c) => c.length === 1) ? 'single' : q.choices.every((c) => c.length <= 2) ? 'pair' : ''}">${q.choices
     .map((lines, i) => `<button class="choice" data-choice="${i}" aria-pressed="false"><span class="choice-letter">${LETTERS[i]}</span><span class="choice-lines">${lines.map((l) => `<span>${escapeHtml(l)}</span>`).join('')}</span></button>`)
     .join('')}</div>`;
   area.querySelectorAll('.choice').forEach((b) => (b.onclick = () => pickChoice(+b.dataset.choice)));
