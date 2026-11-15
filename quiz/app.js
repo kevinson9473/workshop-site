@@ -2,9 +2,11 @@
 const $ = (id) => document.getElementById(id);
 const categories = window.CATEGORIES;
 const questions = window.QUESTIONS;
-const storageKey = 'playroom-workshop-20261111-v2';
+const storageKey = 'playroom-workshop-20261116-v3';
+const realQuestions = questions.filter((q) => !q.example);
+const LETTERS = 'ABCD';
 const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const HOW = { face: '인물 이름 맞히기', poster: '영화 제목 맞히기', video: 'A·B 중 진짜 영상 고르기', song: '노래 제목 맞히기' };
+const HOW = { ppt: '보기 A~D 중 고르기', face: '인물 이름 맞히기', poster: '영화 제목 맞히기', song: '노래 제목 맞히기' };
 const TIMER_MS = 20000;
 const ARC = 2 * Math.PI * 45;
 const aiSticker = (c) => (c.ai ? ' <b class="ai-sticker" aria-label="AI 활용 라운드">AI</b>' : '');
@@ -28,21 +30,23 @@ function toast(message) { const t = $('toast'); t.textContent = message; t.class
 
 /* ── 메뉴 ───────────────────────────────────────── */
 function renderBoard() {
-  document.querySelectorAll('[data-total-questions]').forEach((el) => (el.textContent = questions.length));
-  $('completed-count').textContent = completed.size;
-  $('overall-fill').style.width = `${(completed.size / questions.length) * 100}%`;
+  const doneReal = realQuestions.filter((q) => completed.has(q.id)).length;
+  document.querySelectorAll('[data-total-questions]').forEach((el) => (el.textContent = realQuestions.length));
+  $('completed-count').textContent = doneReal;
+  $('overall-fill').style.width = `${(doneReal / realQuestions.length) * 100}%`;
   $('start').textContent = completed.size === 0 ? '▶ 첫 문제 시작' : completed.size === questions.length ? '✓ 모두 완료 · 처음부터' : '▶ 이어서 시작';
   $('category-grid').innerHTML = categories.map((c, ci) => {
     const qs = questions.filter((q) => q.category === c.id);
-    const done = qs.filter((q) => completed.has(q.id)).length;
+    const real = qs.filter((q) => !q.example);
+    const done = real.filter((q) => completed.has(q.id)).length;
     return `<section class="round" style="--tint:${c.tint}" aria-label="${escapeHtml(c.name)}">
       <div class="round-head">
         <div class="round-top">ROUND ${ci + 1}${aiSticker(c)}</div>
         <h2 class="round-name">${escapeHtml(c.name)}</h2>
         <p class="round-how">${HOW[c.id] || escapeHtml(c.description)}</p>
-        <span class="round-count">${done}/${qs.length}</span>
+        <span class="round-count">${done}/${real.length}</span>
       </div>
-      <div class="tiles">${qs.map((q) => `<button class="tile ${completed.has(q.id) ? 'done' : ''}" data-question="${q.id}" aria-label="${escapeHtml(c.name)} ${q.number}번${completed.has(q.id) ? ', 완료' : ''}"><b>${q.number}</b>${q.era ? `<small>${q.era}</small>` : ''}</button>`).join('')}</div>
+      <div class="tiles">${qs.map((q) => `<button class="tile ${q.example ? 'example' : ''} ${completed.has(q.id) ? 'done' : ''}" data-question="${q.id}" aria-label="${escapeHtml(c.name)} ${q.example ? '예시 문제' : `${q.number}번`}${completed.has(q.id) ? ', 완료' : ''}"><b>${q.example ? '예시' : q.number}</b>${q.era ? `<small>${q.era}</small>` : ''}</button>`).join('')}</div>
     </section>`;
   }).join('');
 }
@@ -84,6 +88,21 @@ function stopMedia() {
   dialog.querySelector('.disc')?.classList.remove('playing');
   dialog.querySelectorAll('.song-buttons button').forEach((b) => b.classList.remove('playing'));
   dialog.querySelector('.media-play')?.classList.remove('hidden');
+}
+
+function renderChoice(area, q) {
+  area.innerHTML = `<div class="choice-grid ${q.choices.every((c) => c.length === 1) ? 'single' : ''}">${q.choices
+    .map((lines, i) => `<button class="choice" data-choice="${i}" aria-pressed="false"><span class="choice-letter">${LETTERS[i]}</span><span class="choice-lines">${lines.map((l) => `<span>${escapeHtml(l)}</span>`).join('')}</span></button>`)
+    .join('')}</div>`;
+  area.querySelectorAll('.choice').forEach((b) => (b.onclick = () => pickChoice(+b.dataset.choice)));
+}
+function pickChoice(i) {
+  if (isRevealed) return;
+  dialog.querySelectorAll('.choice').forEach((b) => {
+    const on = +b.dataset.choice === i;
+    b.classList.toggle('selected', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
 }
 
 function renderVideo(area, q) {
@@ -231,11 +250,11 @@ function openQuestion(index) {
   timerRemaining = TIMER_MS; isRevealed = false; currentIndex = index;
   const q = questions[index], c = categories.find((x) => x.id === q.category);
   const siblings = questions.filter((x) => x.category === q.category);
-  $('question-round').textContent = `ROUND ${categories.indexOf(c) + 1}`;
+  $('question-round').textContent = `ROUND ${categories.indexOf(c) + 1}${q.example ? ' · 예시' : ''}`;
   $('question-category').innerHTML = escapeHtml(c.name) + aiSticker(c);
-  $('question-dots').innerHTML = siblings.map((x) => `<button class="quiz-dot ${x.id === q.id ? 'current' : completed.has(x.id) ? 'done' : ''}" data-question="${x.id}" aria-label="${x.number}번 문제">${x.number}</button>`).join('');
-  $('question-index').textContent = `전체 ${index + 1} / ${questions.length}`;
-  $('question-title').textContent = q.title;
+  $('question-dots').innerHTML = siblings.map((x) => `<button class="quiz-dot ${x.example ? 'example' : ''} ${x.id === q.id ? 'current' : completed.has(x.id) ? 'done' : ''}" data-question="${x.id}" aria-label="${x.example ? '예시 문제' : `${x.number}번 문제`}">${x.example ? '예' : x.number}</button>`).join('');
+  $('question-index').textContent = q.example ? '예시 문제 (점수 없음)' : `${realQuestions.indexOf(q) + 1} / ${realQuestions.length}번 문제`;
+  $('question-title').textContent = (q.example ? '[예시] ' : '') + q.title;
   $('answer-panel').hidden = true; $('answer-panel').innerHTML = '';
   $('hint-panel').hidden = true; $('hint-panel').textContent = q.hint;
   $('hint-button').disabled = false; $('hint-button').innerHTML = '💡 힌트 <kbd>H</kbd>';
@@ -245,7 +264,8 @@ function openQuestion(index) {
   $('next').textContent = index === questions.length - 1 ? '목록으로' : '다음 →';
   const area = $('question-media');
   area.className = `stage-media ${q.category}`;
-  if (q.category === 'face') area.innerHTML = `<img src="${q.image}" alt="눈·코·입 조각으로 만든 인물 문제 이미지">`;
+  if (q.category === 'ppt') renderChoice(area, q);
+  else if (q.category === 'face') area.innerHTML = `<img src="${q.image}" alt="눈·코·입 조각으로 만든 인물 문제 이미지">`;
   else if (q.category === 'poster') area.innerHTML = `<img src="${q.image}" alt="영화 포스터를 흑백 낙서로 다시 그린 문제 이미지">`;
   else if (q.category === 'video') renderVideo(area, q);
   else if (q.category === 'song') renderSong(area, q);
@@ -272,6 +292,12 @@ function revealAnswer() {
   const panel = $('answer-panel');
   panel.innerHTML = `<span class="answer-label">정답</span><h2>${escapeHtml(q.answer)}</h2><p>${escapeHtml(q.explanation)}</p>${q.original ? `<img src="${q.original}" alt="정답 원본 이미지">` : ''}<details><summary>출처 보기</summary>${sources}<div class="credit">${escapeHtml(q.credit)}</div>${q.licenseUrl ? `<a href="${q.licenseUrl}" target="_blank" rel="noopener noreferrer">라이선스 ↗</a>` : ''}</details>`;
   panel.hidden = false;
+  if (q.category === 'ppt') {
+    dialog.querySelectorAll('.choice').forEach((b) => {
+      b.disabled = true;
+      b.classList.add(+b.dataset.choice === q.correct ? 'correct' : 'wrong');
+    });
+  }
   if (q.category === 'video') {
     const realSlot = String(q.clips.findIndex((c) => c.real));
     dialog.querySelectorAll('.pair-pick').forEach((b) => (b.disabled = true));
@@ -317,6 +343,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === ' ') { e.preventDefault(); revealAnswer(); }
   else if (k === 'h') { e.preventDefault(); toggleHint(); }
   else if (k === 't') { e.preventDefault(); toggleTimer(); }
+  else if ('abcd'.includes(k) && k.length === 1 && questions[currentIndex].category === 'ppt') { e.preventDefault(); pickChoice('abcd'.indexOf(k)); }
   else if (['1', '2', '3'].includes(e.key) && questions[currentIndex].category === 'song') {
     e.preventDefault();
     if (e.key === '3' && !isRevealed) return; // 뮤비는 정답 공개 뒤에만

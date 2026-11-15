@@ -1,5 +1,13 @@
 window.CATEGORIES = [
   {
+    "id": "ppt",
+    "name": "송년회 PPT 퀴즈",
+    "en": "WERE YOU WATCHING?",
+    "icon": "▤",
+    "description": "방금 본 발표 자료, 얼마나 기억하나요?",
+    "tint": "#e3ebf3"
+  },
+  {
     "id": "face",
     "name": "눈코입 퀴즈",
     "en": "WHO IS IT?",
@@ -17,15 +25,6 @@ window.CATEGORIES = [
     "ai": true
   },
   {
-    "id": "video",
-    "name": "진짜 영상 찾기",
-    "en": "WHICH IS REAL?",
-    "icon": "◇",
-    "description": "AI가 만든 가짜 사이에 숨은 진짜 하나. 눈을 믿을까요?",
-    "tint": "#dce9e3",
-    "ai": true
-  },
-  {
     "id": "song",
     "name": "노래 맞히기",
     "en": "SOUND ON",
@@ -35,6 +34,127 @@ window.CATEGORIES = [
   }
 ];
 window.QUESTIONS = [
+  {
+    "sources": [],
+    "credit": "송년회 발표 자료(DRAM_AXPI_2026_송년회.pptx)와 행사 기록 기준.",
+    "id": "ppt-ex",
+    "category": "ppt",
+    "example": true,
+    "title": "오늘 송년회 행사 시간은?",
+    "prompt": "보기 A~D 중 하나를 고르세요.",
+    "choices": [
+      [
+        "6:00 ~ 7:20"
+      ],
+      [
+        "7:20 ~ 8:00"
+      ],
+      [
+        "6:30 ~ 8:00"
+      ],
+      [
+        "7:00 ~ 8:30"
+      ]
+    ],
+    "correct": 1,
+    "answer": "B · 7:20 ~ 8:00",
+    "hint": "식사는 6:00 ~ 7:20 이었죠. 그다음은?",
+    "explanation": "식사 6:00 ~ 7:20, 행사 7:20 ~ 8:00. 발표 자료 첫 장에 있었습니다.",
+    "number": 0
+  },
+  {
+    "sources": [],
+    "credit": "송년회 발표 자료(DRAM_AXPI_2026_송년회.pptx)와 행사 기록 기준.",
+    "id": "ppt-01",
+    "category": "ppt",
+    "title": "조직과 리더 이름이 모두 알맞게 짝지어진 것은?",
+    "prompt": "보기 A~D 중 네 쌍이 모두 맞는 것을 고르세요.",
+    "choices": [
+      [
+        "방종민 · 설계 AX",
+        "권남용 · PE AX",
+        "이종범 · FASTAR",
+        "권형달 · AX2"
+      ],
+      [
+        "방종민 · 설계 AX",
+        "권남용 · FASTAR",
+        "이종범 · PE AX",
+        "권형달 · AX2"
+      ],
+      [
+        "방종민 · FASTAR",
+        "권남용 · 설계 AX",
+        "이종범 · PE AX",
+        "권형달 · AX2"
+      ],
+      [
+        "손교민 · AX2",
+        "권형달 · DT AX",
+        "방종민 · 설계 AX",
+        "이종범 · PE AX"
+      ]
+    ],
+    "correct": 1,
+    "answer": "B",
+    "hint": "개회사 순서를 떠올려 보세요. FASTAR 는 권남용 TL님!",
+    "explanation": "설계 AX 방종민 TL님, FASTAR 권남용 TL님, PE AX 이종범 TL님, AX2 그룹 권형달 PL님. (DT AX 는 손교민 팀장님)",
+    "number": 1
+  },
+  {
+    "sources": [],
+    "credit": "송년회 발표 자료(DRAM_AXPI_2026_송년회.pptx)와 행사 기록 기준.",
+    "id": "ppt-02",
+    "category": "ppt",
+    "title": "팀장님과 준비해주신 선물이 모두 알맞게 짝지어진 것은?",
+    "prompt": "보기 A~D 중 네 쌍이 모두 맞는 것을 고르세요.",
+    "choices": [
+      [
+        "손교민 · 무빙스타일",
+        "손영수 · JBL 헤드폰",
+        "이병현 · 버즈4 프로",
+        "홍희일 · 양주 3병"
+      ],
+      [
+        "손교민 · 와인 2병",
+        "손영수 · 버즈4 프로",
+        "이병현 · JBL 헤드폰",
+        "이준행 · 무빙스타일"
+      ],
+      [
+        "손교민 · 무빙스타일",
+        "손영수 · 버즈4 프로",
+        "홍희일 · 와인 2병",
+        "이준행 · 양주 3병"
+      ],
+      [
+        "손교민 · 무빙스타일",
+        "손영수 · 버즈4 프로",
+        "이병현 · JBL 헤드폰",
+        "홍희일 · 양주 3병"
+      ]
+    ],
+    "correct": 3,
+    "answer": "D",
+    "hint": "양주는 PE팀장님, 와인 2병은 VAI1팀장님이었어요.",
+    "explanation": "손교민 팀장님 무빙스타일(+와인), 손영수 설계팀장님 버즈4 프로(+이솝 세트), 이병현 PA팀장님 JBL Tour One M3, 홍희일 PE팀장님 양주 3병. 와인 2병은 이준행 VAI1팀장님.",
+    "number": 2
+  },
+  {
+    "id": "face-ex",
+    "category": "face",
+    "example": true,
+    "title": "이 눈·코·입의 주인공은?",
+    "prompt": "눈·코·입 조각을 보고 인물의 이름을 맞혀주세요.",
+    "answer": "황정민",
+    "hint": "초성: ㅎㅈㅁ",
+    "explanation": "정답은 황정민입니다. 이런 식으로 세 문제가 이어집니다!",
+    "image": "assets/face-ex-question.jpeg",
+    "original": "assets/face-ex-answer.webp",
+    "sources": [],
+    "credit": "사용자 제공 문제 이미지 및 정답 사진(편집 없이 사용).",
+    "number": 0
+  },
   {
     "id": "face-01",
     "category": "face",
@@ -78,9 +198,38 @@ window.QUESTIONS = [
     "image": "assets/face-03-collage.jpg"
   },
   {
-    "id": "poster-v2-01",
+    "id": "poster-ex",
+    "category": "poster",
+    "number": 0,
+    "title": "이 낙서, 어떤 영화일까요?",
+    "prompt": "서툰 그림 속 구도와 단서를 보고 영화 제목을 맞혀주세요.",
+    "answer": "기생충",
+    "hint": "초성: ㄱㅅㅊ",
+    "explanation": "정답은 기생충입니다. 이런 식으로 세 문제가 이어집니다!",
+    "image": "assets/poster-v2-04.png",
+    "original": "assets/poster-v2-04-answer.jpeg",
+    "sources": [],
+    "credit": "사용자 제공 포스터를 참고해 AI로 생성한 흑백 낙서(V2). 정답 화면은 사용자 제공 원본 포스터입니다.",
+    "example": true
+  },
+  {
+    "id": "poster-v2-05",
     "category": "poster",
     "number": 1,
+    "title": "이 낙서, 어떤 영화일까요?",
+    "prompt": "서툰 그림 속 구도와 단서를 보고 영화 제목을 맞혀주세요.",
+    "answer": "조커",
+    "hint": "초성: ㅈㅋ",
+    "explanation": "정답은 조커입니다. 원본 포스터와 낙서의 구도를 비교해 보세요.",
+    "image": "assets/poster-v2-05.png",
+    "original": "assets/poster-v2-05-answer.jpeg",
+    "sources": [],
+    "credit": "사용자 제공 포스터를 참고해 AI로 생성한 흑백 낙서(V2). 정답 화면은 사용자 제공 원본 포스터입니다."
+  },
+  {
+    "id": "poster-v2-01",
+    "category": "poster",
+    "number": 2,
     "title": "이 낙서, 어떤 영화일까요?",
     "prompt": "서툰 그림 속 구도와 단서를 보고 영화 제목을 맞혀주세요.",
     "answer": "괴물",
@@ -94,7 +243,7 @@ window.QUESTIONS = [
   {
     "id": "poster-v2-02",
     "category": "poster",
-    "number": 2,
+    "number": 3,
     "title": "이 낙서, 어떤 영화일까요?",
     "prompt": "서툰 그림 속 구도와 단서를 보고 영화 제목을 맞혀주세요.",
     "answer": "오디세이",
@@ -106,246 +255,41 @@ window.QUESTIONS = [
     "credit": "사용자 제공 포스터를 참고해 AI로 생성한 흑백 낙서(V2). 정답 화면은 사용자 제공 원본 포스터입니다."
   },
   {
-    "id": "poster-v2-03",
-    "category": "poster",
-    "number": 3,
-    "title": "이 낙서, 어떤 영화일까요?",
-    "prompt": "서툰 그림 속 구도와 단서를 보고 영화 제목을 맞혀주세요.",
-    "answer": "인터스텔라",
-    "hint": "초성: ㅇㅌㅅㅌㄹ",
-    "explanation": "정답은 인터스텔라입니다. 원본 포스터와 낙서의 구도를 비교해 보세요.",
-    "image": "assets/poster-v2-03.png",
-    "original": "assets/poster-v2-03-answer.jpeg",
-    "sources": [],
-    "credit": "사용자 제공 포스터를 참고해 AI로 생성한 흑백 낙서(V2). 정답 화면은 사용자 제공 원본 포스터입니다."
-  },
-  {
-    "id": "poster-v2-04",
-    "category": "poster",
-    "number": 4,
-    "title": "이 낙서, 어떤 영화일까요?",
-    "prompt": "서툰 그림 속 구도와 단서를 보고 영화 제목을 맞혀주세요.",
-    "answer": "기생충",
-    "hint": "초성: ㄱㅅㅊ",
-    "explanation": "정답은 기생충입니다. 원본 포스터와 낙서의 구도를 비교해 보세요.",
-    "image": "assets/poster-v2-04.png",
-    "original": "assets/poster-v2-04-answer.jpeg",
-    "sources": [],
-    "credit": "사용자 제공 포스터를 참고해 AI로 생성한 흑백 낙서(V2). 정답 화면은 사용자 제공 원본 포스터입니다."
-  },
-  {
-    "id": "poster-v2-05",
-    "category": "poster",
-    "number": 5,
-    "title": "이 낙서, 어떤 영화일까요?",
-    "prompt": "서툰 그림 속 구도와 단서를 보고 영화 제목을 맞혀주세요.",
-    "answer": "조커",
-    "hint": "초성: ㅈㅋ",
-    "explanation": "정답은 조커입니다. 원본 포스터와 낙서의 구도를 비교해 보세요.",
-    "image": "assets/poster-v2-05.png",
-    "original": "assets/poster-v2-05-answer.jpeg",
-    "sources": [],
-    "credit": "사용자 제공 포스터를 참고해 AI로 생성한 흑백 낙서(V2). 정답 화면은 사용자 제공 원본 포스터입니다."
-  },
-  {
-    "id": "real-pair-01",
-    "category": "video",
-    "number": 1,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "B · 눈밭을 달려오는 블랙노즈 양",
-    "hint": "너무 아름다운 풍경 vs 너무 귀여운 동물. 화면이 지나치게 완벽한 쪽은?",
-    "explanation": "진짜는 B, 눈밭을 달려오는 스위스 블랙노즈 양입니다. A의 은하수 카약은 AI 생성 영상. Count The Fingers 이용자 약 2만 명 중 양 영상을 진짜로 맞힌 사람은 52%, 카약 영상을 AI로 맞힌 사람은 49%뿐이었습니다.",
-    "clips": [
-      {
-        "video": "assets/real-01-a.mp4",
-        "poster": "assets/real-01-a.jpg",
-        "real": false,
-        "label": "은하수 아래 밤바다 카약"
-      },
-      {
-        "video": "assets/real-01-b.mp4",
-        "poster": "assets/real-01-b.jpg",
-        "real": true,
-        "label": "눈밭을 달려오는 블랙노즈 양"
-      }
-    ],
+    "id": "song-ex",
+    "category": "song",
+    "number": 0,
+    "era": "20s",
+    "title": "이 노래, 제목이 뭘까요?",
+    "prompt": "처음 5초 → 하이라이트 순서로 들려주세요.",
+    "answer": "아무노래",
+    "hint": "2020년 초, 춤 챌린지 열풍을 일으킨 래퍼의 곡입니다.",
+    "explanation": "지코 · 아무노래 (2020).",
+    "youtube": "GOtF5_Ow0_Y",
+    "reveal": {
+      "youtube": "UdyjeUwPz_E",
+      "label": "뮤직비디오"
+    },
+    "intro": {
+      "start": 0,
+      "length": 5
+    },
+    "highlight": {
+      "start": 26.6,
+      "length": 15,
+      "note": "\"○○ 노래나 일단 틀어\" 후렴"
+    },
     "sources": [
       {
-        "label": "Count The Fingers · 진짜/AI 구분 게임",
-        "url": "https://countthefingers.com/"
-      }
-    ],
-    "credit": "Count The Fingers(countthefingers.com) 문제 영상과 공개 정답·통계 기준. 원 게시자 미확인 — 행사 내부 진행용. 음소거·재인코딩(최대 20초).",
-    "licenseUrl": null
-  },
-  {
-    "id": "real-pair-02",
-    "category": "video",
-    "number": 2,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "A · 금장식 의상을 입은 고양이",
-    "hint": "고양이의 털과 몸이 물리적으로 자연스럽게 움직이는지 보세요.",
-    "explanation": "진짜는 A, 화려한 금장식을 걸친 고양이입니다. B의 계단을 데굴데굴 굴러 내려오는 고양이는 AI 생성 영상. 이용자 정답률은 A 61%, B 55%였습니다.",
-    "clips": [
-      {
-        "video": "assets/real-02-a.mp4",
-        "poster": "assets/real-02-a.jpg",
-        "real": true,
-        "label": "금장식 의상을 입은 고양이"
+        "label": "문제 음원 · YouTube ZICO - Topic",
+        "url": "https://www.youtube.com/watch?v=GOtF5_Ow0_Y"
       },
       {
-        "video": "assets/real-02-b.mp4",
-        "poster": "assets/real-02-b.jpg",
-        "real": false,
-        "label": "계단을 굴러 내려오는 고양이"
+        "label": "정답 영상 · KOZ Entertainment · 아무노래 Official Music Video",
+        "url": "https://www.youtube.com/watch?v=UdyjeUwPz_E"
       }
     ],
-    "sources": [
-      {
-        "label": "Count The Fingers · 진짜/AI 구분 게임",
-        "url": "https://countthefingers.com/"
-      }
-    ],
-    "credit": "Count The Fingers(countthefingers.com) 문제 영상과 공개 정답·통계 기준. 원 게시자 미확인 — 행사 내부 진행용. 음소거·재인코딩(최대 20초).",
-    "licenseUrl": null
-  },
-  {
-    "id": "real-pair-03",
-    "category": "video",
-    "number": 3,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "B · 눈밭의 아이와 황제펭귄",
-    "hint": "펭귄 날개에 무언가 달려 있나요? 배경 간판 글자, 고양이 앞발의 움직임도 끝까지 보세요.",
-    "explanation": "진짜는 B, 눈밭에서 황제펭귄과 노는 아이입니다. 펭귄 날개의 식별 밴드와 23초 내내 흐트러지지 않는 중국어 간판이 실제 촬영의 단서. A의 아기와 새끼 고양이는 AI 생성 영상입니다. 이용자 정답률은 펭귄 51%, 고양이 59%.",
-    "clips": [
-      {
-        "video": "assets/real-03-a.mp4",
-        "poster": "assets/real-03-a.jpg",
-        "real": false,
-        "label": "침대 위 아기와 새끼 고양이"
-      },
-      {
-        "video": "assets/real-03-b.mp4",
-        "poster": "assets/real-03-b.jpg",
-        "real": true,
-        "label": "눈밭의 아이와 황제펭귄"
-      }
-    ],
-    "sources": [
-      {
-        "label": "Count The Fingers · 진짜/AI 구분 게임",
-        "url": "https://countthefingers.com/"
-      }
-    ],
-    "credit": "Count The Fingers(countthefingers.com) 문제 영상과 공개 정답·통계 기준. 원 게시자 미확인 — 행사 내부 진행용. 음소거·재인코딩(최대 20초).",
-    "licenseUrl": null
-  },
-  {
-    "id": "real-pair-04",
-    "category": "video",
-    "number": 4,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "A · 코기 옆에서 기타 치는 사람",
-    "hint": "기타 줄을 짚는 손가락, 앵무새의 발과 TV 화면 속 움직임을 비교해 보세요.",
-    "explanation": "진짜는 A, 코기와 함께 기타를 치는 영상입니다. 손가락 운지와 강아지 움직임이 끝까지 자연스럽게 이어집니다. B의 춤추는 앵무새는 AI 생성 영상. 이용자 정답률은 기타 67%, 앵무새 67%.",
-    "clips": [
-      {
-        "video": "assets/real-04-a.mp4",
-        "poster": "assets/real-04-a.jpg",
-        "real": true,
-        "label": "코기 옆에서 기타 치는 사람"
-      },
-      {
-        "video": "assets/real-04-b.mp4",
-        "poster": "assets/real-04-b.jpg",
-        "real": false,
-        "label": "TV 속 마이클 잭슨을 따라 추는 앵무새"
-      }
-    ],
-    "sources": [
-      {
-        "label": "Count The Fingers · 진짜/AI 구분 게임",
-        "url": "https://countthefingers.com/"
-      }
-    ],
-    "credit": "Count The Fingers(countthefingers.com) 문제 영상과 공개 정답·통계 기준. 원 게시자 미확인 — 행사 내부 진행용. 음소거·재인코딩(최대 20초).",
-    "licenseUrl": null
-  },
-  {
-    "id": "real-pair-05",
-    "category": "video",
-    "number": 5,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "A · 공중에 얼어붙은 스파게티와 포크",
-    "hint": "말도 안 되는 장면이 둘. 한쪽은 날씨가 만든 기적, 한쪽은 너무 다정한 맹수입니다.",
-    "explanation": "진짜는 A! 2026년 1월 23일 미국 미니애폴리스(최저 -29℃, 체감 -43℃)에서 기상캐스터 Jennifer McDermed가 찍은 영상으로, FOX Weather·Fox News가 보도했습니다. 삶은 스파게티가 포크를 든 채 그대로 얼어붙었습니다. B의 흑곰 셀카는 AI 생성 영상. 이용자 정답률은 스파게티 87%, 흑곰 59%.",
-    "clips": [
-      {
-        "video": "assets/real-05-a.mp4",
-        "poster": "assets/real-05-a.jpg",
-        "real": true,
-        "label": "공중에 얼어붙은 스파게티와 포크"
-      },
-      {
-        "video": "assets/real-05-b.mp4",
-        "poster": "assets/real-05-b.jpg",
-        "real": false,
-        "label": "야생 흑곰과 껴안는 셀카"
-      }
-    ],
-    "sources": [
-      {
-        "label": "FOX Weather (X) · 2026-01-23 보도",
-        "url": "https://x.com/foxweather/status/2014888478966739245"
-      },
-      {
-        "label": "WION · Frozen spaghetti in Minneapolis",
-        "url": "https://www.wionews.com/world/minnesota-arctic-blast-frozen-pasta-polar-vortex-1769252077354"
-      },
-      {
-        "label": "Count The Fingers · 진짜/AI 구분 게임",
-        "url": "https://countthefingers.com/"
-      }
-    ],
-    "credit": "원본: Jennifer McDermed(FOX 9 기상캐스터) 촬영 · FOX Weather 보도. Count The Fingers 문제 영상에서 방송 로고·화면 녹화 UI를 잘라내고 음소거·재인코딩(약 7초).",
-    "licenseUrl": null
-  },
-  {
-    "id": "real-pair-06",
-    "category": "video",
-    "number": 6,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "B · 타이어 속에 몸을 끼워 넣는 정비사",
-    "hint": "둘 다 몸개그! 넘어지는 순간 몸과 주변 사람들의 반응이 물리적으로 자연스러운지 보세요.",
-    "explanation": "진짜는 B! 타이어 가게 정비사가 타이어 안에 몸을 말아 넣고 굴러다니는 실제 영상입니다. A의 호버보드 영상은 AI 생성 — 이용자 절반 이상(51%)이 진짜라고 속았습니다. 믿기 힘든 쪽이 진짜일 수 있어요. 타이어 영상 정답률 78%.",
-    "clips": [
-      {
-        "video": "assets/real-06-a.mp4",
-        "poster": "assets/real-06-a.jpg",
-        "real": false,
-        "label": "호버보드 타다 넘어지는 남성"
-      },
-      {
-        "video": "assets/real-06-b.mp4",
-        "poster": "assets/real-06-b.jpg",
-        "real": true,
-        "label": "타이어 속에 몸을 끼워 넣는 정비사"
-      }
-    ],
-    "sources": [
-      {
-        "label": "Count The Fingers · 진짜/AI 구분 게임",
-        "url": "https://countthefingers.com/"
-      }
-    ],
-    "credit": "Count The Fingers(countthefingers.com) 문제 영상과 공개 정답·통계 기준. 원 게시자 미확인 — 행사 내부 진행용. 음소거·재인코딩(최대 20초).",
-    "licenseUrl": null
+    "credit": "문제는 유튜브 뮤직 음원(아티스트 - Topic), 정답 공개 때는 공식 뮤직비디오(없으면 앨범 표지 음원 영상)를 임베드로 재생합니다. 저작권은 각 권리자에게 있습니다.",
+    "example": true
   },
   {
     "id": "song-01",
@@ -384,41 +328,9 @@ window.QUESTIONS = [
     "credit": "문제는 유튜브 뮤직 음원(아티스트 - Topic), 정답 공개 때는 공식 뮤직비디오(없으면 앨범 표지 음원 영상)를 임베드로 재생합니다. 저작권은 각 권리자에게 있습니다."
   },
   {
-    "id": "song-02",
-    "category": "song",
-    "number": 2,
-    "era": "20s",
-    "title": "이 노래, 제목이 뭘까요?",
-    "prompt": "처음 5초 → 하이라이트 순서로 들려주세요.",
-    "answer": "Drowning",
-    "hint": "2023년 발표, 라이브 영상으로 뒤늦게 역주행한 남자 솔로 가수의 곡입니다.",
-    "explanation": "WOODZ(우즈) · Drowning (2023).",
-    "youtube": "NbKH4iZqq1Y",
-    "reveal": {
-      "youtube": "NbKH4iZqq1Y",
-      "label": "음원"
-    },
-    "intro": {
-      "start": 0,
-      "length": 5
-    },
-    "highlight": {
-      "start": 59,
-      "length": 15,
-      "note": "\"Oh, I'm drowning\" 후렴"
-    },
-    "sources": [
-      {
-        "label": "문제 음원 · YouTube WOODZ - Topic",
-        "url": "https://www.youtube.com/watch?v=NbKH4iZqq1Y"
-      }
-    ],
-    "credit": "문제는 유튜브 뮤직 음원(아티스트 - Topic), 정답 공개 때는 공식 뮤직비디오(없으면 앨범 표지 음원 영상)를 임베드로 재생합니다. 저작권은 각 권리자에게 있습니다."
-  },
-  {
     "id": "song-03",
     "category": "song",
-    "number": 3,
+    "number": 2,
     "era": "10s",
     "title": "이 노래, 제목이 뭘까요?",
     "prompt": "처음 5초 → 하이라이트 순서로 들려주세요.",
@@ -454,7 +366,7 @@ window.QUESTIONS = [
   {
     "id": "song-04",
     "category": "song",
-    "number": 4,
+    "number": 3,
     "era": "90s",
     "title": "이 노래, 제목이 뭘까요?",
     "prompt": "처음 5초 → 하이라이트 순서로 들려주세요.",
@@ -479,78 +391,6 @@ window.QUESTIONS = [
       {
         "label": "문제 음원 · YouTube COOL - Topic",
         "url": "https://www.youtube.com/watch?v=3YSfRCtZ-AY"
-      }
-    ],
-    "credit": "문제는 유튜브 뮤직 음원(아티스트 - Topic), 정답 공개 때는 공식 뮤직비디오(없으면 앨범 표지 음원 영상)를 임베드로 재생합니다. 저작권은 각 권리자에게 있습니다."
-  },
-  {
-    "id": "song-05",
-    "category": "song",
-    "number": 5,
-    "era": "10s",
-    "title": "이 노래, 제목이 뭘까요?",
-    "prompt": "처음 5초 → 하이라이트 순서로 들려주세요.",
-    "answer": "위잉위잉",
-    "hint": "2014년 데뷔 EP에 실린, 밴드 혁오를 알린 곡입니다.",
-    "explanation": "혁오 · 위잉위잉 (2014).",
-    "youtube": "bVrW1eDMtL8",
-    "reveal": {
-      "youtube": "hr4GaRPX6cM",
-      "label": "뮤직비디오"
-    },
-    "intro": {
-      "start": 0,
-      "length": 5
-    },
-    "highlight": {
-      "start": 30.3,
-      "length": 15,
-      "note": "\"○○○○ 하루살이도\" 후렴"
-    },
-    "sources": [
-      {
-        "label": "문제 음원 · YouTube HYUKOH - Topic",
-        "url": "https://www.youtube.com/watch?v=bVrW1eDMtL8"
-      },
-      {
-        "label": "정답 영상 · SEOUL MUSIC · [MV] HYUKOH - WI ING WI ING",
-        "url": "https://www.youtube.com/watch?v=hr4GaRPX6cM"
-      }
-    ],
-    "credit": "문제는 유튜브 뮤직 음원(아티스트 - Topic), 정답 공개 때는 공식 뮤직비디오(없으면 앨범 표지 음원 영상)를 임베드로 재생합니다. 저작권은 각 권리자에게 있습니다."
-  },
-  {
-    "id": "song-06",
-    "category": "song",
-    "number": 6,
-    "era": "20s",
-    "title": "이 노래, 제목이 뭘까요?",
-    "prompt": "처음 5초 → 하이라이트 순서로 들려주세요.",
-    "answer": "아무노래",
-    "hint": "2020년 초, 춤 챌린지 열풍을 일으킨 래퍼의 곡입니다.",
-    "explanation": "지코 · 아무노래 (2020).",
-    "youtube": "GOtF5_Ow0_Y",
-    "reveal": {
-      "youtube": "UdyjeUwPz_E",
-      "label": "뮤직비디오"
-    },
-    "intro": {
-      "start": 0,
-      "length": 5
-    },
-    "highlight": {
-      "start": 26.6,
-      "length": 15,
-      "note": "\"○○ 노래나 일단 틀어\" 후렴"
-    },
-    "sources": [
-      {
-        "label": "문제 음원 · YouTube ZICO - Topic",
-        "url": "https://www.youtube.com/watch?v=GOtF5_Ow0_Y"
-      },
-      {
-        "label": "정답 영상 · KOZ Entertainment · 아무노래 Official Music Video",
-        "url": "https://www.youtube.com/watch?v=UdyjeUwPz_E"
       }
     ],
     "credit": "문제는 유튜브 뮤직 음원(아티스트 - Topic), 정답 공개 때는 공식 뮤직비디오(없으면 앨범 표지 음원 영상)를 임베드로 재생합니다. 저작권은 각 권리자에게 있습니다."

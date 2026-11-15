@@ -222,3 +222,23 @@ kbd{display:inline-block;min-width:1.7em;padding:.1em .45em;border-radius:6px;bo
 .song-scene.revealed .song-buttons{justify-content:center;margin:0 0 8px}
 .song-scene.revealed .song-buttons button{min-width:0;padding:12px 18px;font-size:clamp(20px,1.8vw,28px)}
 .song-scene.revealed .song-status{font-size:17px;margin-top:6px}
+
+/* ── 2026-11-16: 예시 문제 · 보기 고르기(PPT 퀴즈) ── */
+.tile.example{border-style:dashed;background:#fffdf3}
+.tile.example b{font-size:clamp(22px,2vw,34px)}
+.tile.example.done b{color:var(--lime)}
+.quiz-dot.example{font-size:.8em}
+.stage-media.ppt{background:#f7f9f3}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px;width:100%;height:100%;padding:18px}
+.choice{display:flex;align-items:center;gap:20px;text-align:left;border:3px solid var(--line);border-radius:16px;background:var(--card);padding:18px 24px;transition:transform .12s,border-color .12s,background .12s}
+.choice:hover:not(:disabled){transform:translateY(-2px);border-color:var(--forest-2)}
+.choice:disabled{opacity:1;cursor:default}
+.choice-letter{flex:none;display:grid;place-items:center;width:72px;height:72px;border-radius:50%;background:#e8eedb;color:var(--forest);font:400 46px/1 var(--display);font-synthesis:none}
+.choice-lines{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:clamp(20px,1.7vw,30px);line-height:1.3}
+.choice-grid.single .choice-lines{font-size:clamp(28px,2.6vw,46px)}
+.choice.selected{border-color:var(--forest);background:#eef4e0}
+.choice.selected .choice-letter{background:var(--forest);color:var(--lime)}
+.choice.correct{border-color:var(--lime-2);background:var(--lime)}
+.choice.correct .choice-letter{background:var(--forest);color:var(--lime)}
+.choice.wrong{opacity:.38}
+@media (max-width:900px){.choice-grid{grid-template-columns:1fr;grid-template-rows:none}.choice-letter{width:52px;height:52px;font-size:32px}}
