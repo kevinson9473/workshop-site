@@ -2,7 +2,7 @@
 const $ = (id) => document.getElementById(id);
 const categories = window.CATEGORIES;
 const questions = window.QUESTIONS;
-const storageKey = 'playroom-workshop-20261116-v3';
+const storageKey = 'playroom-workshop-20261119-v4';
 const realQuestions = questions.filter((q) => !q.example);
 const LETTERS = 'ABCD';
 const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
