@@ -53,7 +53,7 @@ kbd{display:inline-block;min-width:1.7em;padding:.1em .45em;border-radius:6px;bo
 .round-name{font:400 clamp(28px,2.5vw,42px)/1.15 var(--display);margin:8px 0 4px;font-synthesis:none;letter-spacing:-.5px}
 .round-how{font-size:17px;color:#425449;margin:0;font-weight:500}
 .round-count{position:absolute;right:18px;top:16px;font:700 16px var(--mono);color:#3c5446}
-.tiles{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,minmax(0,1fr));gap:10px;padding:14px}
+.tiles{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(var(--rows,3),minmax(0,1fr));gap:10px;padding:14px}
 .tile{border-radius:14px;border:2px solid var(--line);background:#fbfcf7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:64px;transition:transform .12s,border-color .12s,background .12s}
 .tile:hover{transform:translateY(-2px);border-color:var(--forest-2);background:#f3f7e8}
 .tile b{font:400 clamp(30px,3vw,52px)/1 var(--display);font-synthesis:none;color:var(--forest)}
@@ -243,3 +243,28 @@ kbd{display:inline-block;min-width:1.7em;padding:.1em .45em;border-radius:6px;bo
 .choice.wrong{opacity:.38}
 @media (max-width:900px){.choice-grid{grid-template-columns:1fr;grid-template-rows:none}.choice-letter{width:52px;height:52px;font-size:32px}}
 .choice-grid.pair .choice-lines{font-size:clamp(26px,2.3vw,40px)}
+
+/* ── O/X: 진짜일까요? 가짜일까요? (2026-11-19) ── */
+.stage-media.ox{background:var(--stage)}
+.ox-stage{display:grid;grid-template-columns:minmax(0,1fr) clamp(200px,17vw,300px);gap:18px;width:100%;height:100%;padding:16px}
+.ox-clip{margin:0;position:relative;border-radius:14px;overflow:hidden;background:var(--stage-2);display:flex;min-height:0}
+.ox-clip video{flex:1;min-width:0;min-height:0;width:100%;object-fit:contain;cursor:pointer}
+.ox-verdict{display:none;position:absolute;top:16px;left:50%;transform:translateX(-50%);padding:12px 26px;border-radius:30px;font:400 clamp(24px,2.2vw,38px)/1 var(--display);font-synthesis:none;white-space:nowrap;box-shadow:0 6px 18px #0006}
+.ox-clip.is-real{box-shadow:inset 0 0 0 8px var(--lime)}
+.ox-clip.is-real .ox-verdict{display:block;background:var(--lime);color:var(--forest)}
+.ox-clip.is-ai{box-shadow:inset 0 0 0 8px var(--ai-bg)}
+.ox-clip.is-ai .ox-verdict{display:block;background:var(--ai-bg);color:var(--ai-ink)}
+.ox-picks{display:grid;grid-template-rows:1fr 1fr;gap:16px;min-height:0}
+.ox-pick{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-radius:18px;border:4px solid #ffffff2a;background:#ffffff12;color:#eaf3df;cursor:pointer;transition:transform .12s,background .12s}
+.ox-pick b{font:400 clamp(70px,7vw,130px)/1 var(--display);font-synthesis:none}
+.ox-pick span{font:700 clamp(18px,1.6vw,26px) var(--body)}
+.ox-pick kbd{position:absolute;right:10px;bottom:10px;font:700 12px var(--mono,monospace);padding:3px 7px;border-radius:5px;background:#ffffff22;color:#eaf3df}
+.ox-pick.o b{color:#7fd6ff}
+.ox-pick.x b{color:#ff8a80}
+.ox-pick:hover:not(:disabled){transform:translateY(-2px);background:#ffffff22}
+.ox-pick.selected{background:#ffffff2e;border-color:#fff;transform:scale(1.03)}
+.ox-pick:disabled{cursor:default;opacity:1}
+.ox-pick.correct{background:var(--lime);border-color:var(--lime);color:var(--forest)}
+.ox-pick.correct b{color:var(--forest)}
+.ox-pick.wrong{opacity:.3!important}
+@media (max-width:900px){.ox-stage{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) 120px}.ox-picks{grid-template-rows:none;grid-template-columns:1fr 1fr}.ox-pick b{font-size:56px}}

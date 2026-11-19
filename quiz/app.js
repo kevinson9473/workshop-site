@@ -6,7 +6,7 @@ const storageKey = 'playroom-workshop-20261119-v4';
 const realQuestions = questions.filter((q) => !q.example);
 const LETTERS = 'ABCD';
 const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const HOW = { ppt: '보기 A~D 중 고르기', face: '인물 이름 맞히기', poster: '영화 제목 맞히기', song: '노래 제목 맞히기' };
+const HOW = { ppt: '보기 A~D 중 고르기', face: '인물 이름 맞히기', poster: '영화 제목 맞히기', ox: '진짜면 O, AI가 만든 가짜면 X', song: '노래 제목 맞히기' };
 const TIMER_MS = 20000;
 const ARC = 2 * Math.PI * 45;
 const aiSticker = (c) => (c.ai ? ' <b class="ai-sticker" aria-label="AI 활용 라운드">AI</b>' : '');
@@ -46,7 +46,7 @@ function renderBoard() {
         <p class="round-how">${HOW[c.id] || escapeHtml(c.description)}</p>
         <span class="round-count">${done}/${real.length}</span>
       </div>
-      <div class="tiles">${qs.map((q) => `<button class="tile ${q.example ? 'example' : ''} ${completed.has(q.id) ? 'done' : ''}" data-question="${q.id}" aria-label="${escapeHtml(c.name)} ${q.example ? '예시 문제' : `${q.number}번`}${completed.has(q.id) ? ', 완료' : ''}"><b>${q.example ? '예시' : q.number}</b>${q.era ? `<small>${q.era}</small>` : ''}</button>`).join('')}</div>
+      <div class="tiles" style="--rows:${Math.max(3, Math.ceil(qs.length / 2))}">${qs.map((q) => `<button class="tile ${q.example ? 'example' : ''} ${completed.has(q.id) ? 'done' : ''}" data-question="${q.id}" aria-label="${escapeHtml(c.name)} ${q.example ? '예시 문제' : `${q.number}번`}${completed.has(q.id) ? ', 완료' : ''}"><b>${q.example ? '예시' : q.number}</b>${q.era ? `<small>${q.era}</small>` : ''}</button>`).join('')}</div>
     </section>`;
   }).join('');
 }
@@ -128,6 +128,40 @@ function renderVideo(area, q) {
     area.querySelectorAll('.pair-pick').forEach((x) => { x.classList.remove('selected'); x.setAttribute('aria-pressed', 'false'); });
     b.classList.add('selected'); b.setAttribute('aria-pressed', 'true');
   }));
+}
+
+// O/X: 영상 하나를 보고 진짜(O)인지 AI가 만든 가짜(X)인지
+function renderOx(area, q) {
+  area.innerHTML = `<div class="ox-stage">
+      <figure class="ox-clip"><video playsinline muted loop preload="auto" poster="${q.poster}" aria-label="문제 영상"><source src="${q.video}" type="video/mp4"></video>
+        <span class="ox-verdict">${q.real ? '⭕ 진짜 · 실제 촬영' : '❌ 가짜 · AI 생성'}</span></figure>
+      <div class="ox-picks">
+        <button class="ox-pick o" data-ox="o" aria-pressed="false"><b>O</b><span>진짜</span><kbd>O</kbd></button>
+        <button class="ox-pick x" data-ox="x" aria-pressed="false"><b>X</b><span>가짜 (AI)</span><kbd>X</kbd></button>
+      </div>
+    </div>
+    <button class="media-play" aria-label="영상 재생">▶</button><button class="media-restart">↻ 처음부터</button>`;
+  const v = area.querySelector('video');
+  const playBtn = area.querySelector('.media-play');
+  const play = async (restart) => {
+    const generation = mediaGeneration;
+    if (restart) v.currentTime = 0;
+    try { await v.play(); if (generation !== mediaGeneration) { v.pause(); return; } playBtn.classList.add('hidden'); }
+    catch { toast('영상을 재생하지 못했습니다. ▶를 다시 눌러주세요.'); }
+  };
+  playBtn.onclick = () => play(false);
+  area.querySelector('.media-restart').onclick = () => play(true);
+  v.onclick = () => (v.paused ? play(false) : (v.pause(), playBtn.classList.remove('hidden')));
+  v.addEventListener('error', () => toast('영상 파일을 찾지 못했습니다. dist/assets 폴더를 확인하세요.'));
+  area.querySelectorAll('.ox-pick').forEach((b) => (b.onclick = () => pickOx(b.dataset.ox)));
+}
+function pickOx(k) {
+  if (isRevealed) return;
+  dialog.querySelectorAll('.ox-pick').forEach((b) => {
+    const on = b.dataset.ox === k;
+    b.classList.toggle('selected', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
 }
 
 const SONG_CLIPS = { intro: (q) => `처음 ${q.intro.length}초`, highlight: () => '하이라이트' };
@@ -268,6 +302,7 @@ function openQuestion(index) {
   else if (q.category === 'face') area.innerHTML = `<img src="${q.image}" alt="눈·코·입 조각으로 만든 인물 문제 이미지">`;
   else if (q.category === 'poster') area.innerHTML = `<img src="${q.image}" alt="영화 포스터를 흑백 낙서로 다시 그린 문제 이미지">`;
   else if (q.category === 'video') renderVideo(area, q);
+  else if (q.category === 'ox') renderOx(area, q);
   else if (q.category === 'song') renderSong(area, q);
   if (!dialog.open) dialog.showModal();
   $('reveal').focus({ preventScroll: true });
@@ -302,6 +337,11 @@ function revealAnswer() {
     const realSlot = String(q.clips.findIndex((c) => c.real));
     dialog.querySelectorAll('.pair-pick').forEach((b) => (b.disabled = true));
     dialog.querySelectorAll('.pair-clip').forEach((f) => { const c = q.clips[+f.dataset.slot]; if (c.video) f.classList.add(f.dataset.slot === realSlot ? 'is-real' : 'is-ai'); });
+  }
+  if (q.category === 'ox') {
+    const right = q.real ? 'o' : 'x';
+    dialog.querySelector('.ox-clip')?.classList.add(q.real ? 'is-real' : 'is-ai');
+    dialog.querySelectorAll('.ox-pick').forEach((b) => { b.disabled = true; b.classList.add(b.dataset.ox === right ? 'correct' : 'wrong'); });
   }
   if (q.category === 'song') {
     dialog.querySelector('.song-scene')?.classList.add('revealed');
@@ -344,6 +384,7 @@ document.addEventListener('keydown', (e) => {
   else if (k === 'h') { e.preventDefault(); toggleHint(); }
   else if (k === 't') { e.preventDefault(); toggleTimer(); }
   else if ('abcd'.includes(k) && k.length === 1 && questions[currentIndex].category === 'ppt') { e.preventDefault(); pickChoice('abcd'.indexOf(k)); }
+  else if ((k === 'o' || k === 'x') && questions[currentIndex].category === 'ox') { e.preventDefault(); pickOx(k); }
   else if (['1', '2', '3'].includes(e.key) && questions[currentIndex].category === 'song') {
     e.preventDefault();
     if (e.key === '3' && !isRevealed) return; // 뮤비는 정답 공개 뒤에만

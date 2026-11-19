@@ -17,11 +17,11 @@ window.CATEGORIES = [
     "ai": true
   },
   {
-    "id": "video",
-    "name": "진짜 영상 찾기",
-    "en": "WHICH IS REAL?",
-    "icon": "◇",
-    "description": "AI가 만든 가짜 사이에 숨은 진짜 하나. 눈을 믿을까요?",
+    "id": "ox",
+    "name": "진짜일까요? 가짜일까요?",
+    "en": "REAL OR AI?",
+    "icon": "⭕",
+    "description": "실제로 찍은 영상이면 O, AI가 만든 가짜면 X!",
     "tint": "#dce9e3",
     "ai": true
   },
@@ -163,28 +163,18 @@ window.QUESTIONS = [
     "credit": "사용자 제공 포스터를 참고해 AI로 생성한 흑백 낙서(V2). 정답 화면은 사용자 제공 원본 포스터입니다."
   },
   {
-    "id": "real-pair-01",
-    "category": "video",
+    "id": "ox-01",
+    "category": "ox",
     "number": 1,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "B · 눈밭을 달려오는 블랙노즈 양",
-    "hint": "너무 아름다운 풍경 vs 너무 귀여운 동물. 화면이 지나치게 완벽한 쪽은?",
-    "explanation": "진짜는 B, 눈밭을 달려오는 스위스 블랙노즈 양입니다. A의 은하수 카약은 AI 생성 영상. Count The Fingers 이용자 약 2만 명 중 양 영상을 진짜로 맞힌 사람은 52%, 카약 영상을 AI로 맞힌 사람은 49%뿐이었습니다.",
-    "clips": [
-      {
-        "video": "assets/real-01-a.mp4",
-        "poster": "assets/real-01-a.jpg",
-        "real": false,
-        "label": "은하수 아래 밤바다 카약"
-      },
-      {
-        "video": "assets/real-01-b.mp4",
-        "poster": "assets/real-01-b.jpg",
-        "real": true,
-        "label": "눈밭을 달려오는 블랙노즈 양"
-      }
-    ],
+    "title": "이 영상, 진짜일까요? 가짜일까요?",
+    "prompt": "실제로 촬영한 영상이면 O, AI가 만든 영상이면 X!",
+    "video": "assets/real-01-b.mp4",
+    "poster": "assets/real-01-b.jpg",
+    "real": true,
+    "scene": "눈밭을 달려오는 블랙노즈 양",
+    "answer": "O · 진짜 (실제 촬영)",
+    "hint": "털이 바람에 날리고 발밑의 눈이 튀는 모습, 자연스러운가요?",
+    "explanation": "진짜입니다! 눈밭을 달려오는 스위스 블랙노즈 양. Count The Fingers 이용자 약 2만 명 중 52%만 진짜로 맞혔습니다.",
     "sources": [
       {
         "label": "Count The Fingers · 진짜/AI 구분 게임",
@@ -195,28 +185,18 @@ window.QUESTIONS = [
     "licenseUrl": null
   },
   {
-    "id": "real-pair-02",
-    "category": "video",
+    "id": "ox-02",
+    "category": "ox",
     "number": 2,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "A · 금장식 의상을 입은 고양이",
+    "title": "이 영상, 진짜일까요? 가짜일까요?",
+    "prompt": "실제로 촬영한 영상이면 O, AI가 만든 영상이면 X!",
+    "video": "assets/real-02-b.mp4",
+    "poster": "assets/real-02-b.jpg",
+    "real": false,
+    "scene": "계단을 굴러 내려오는 고양이",
+    "answer": "X · 가짜 (AI 생성)",
     "hint": "고양이의 털과 몸이 물리적으로 자연스럽게 움직이는지 보세요.",
-    "explanation": "진짜는 A, 화려한 금장식을 걸친 고양이입니다. B의 계단을 데굴데굴 굴러 내려오는 고양이는 AI 생성 영상. 이용자 정답률은 A 61%, B 55%였습니다.",
-    "clips": [
-      {
-        "video": "assets/real-02-a.mp4",
-        "poster": "assets/real-02-a.jpg",
-        "real": true,
-        "label": "금장식 의상을 입은 고양이"
-      },
-      {
-        "video": "assets/real-02-b.mp4",
-        "poster": "assets/real-02-b.jpg",
-        "real": false,
-        "label": "계단을 굴러 내려오는 고양이"
-      }
-    ],
+    "explanation": "가짜(AI 생성)입니다. 계단을 데굴데굴 굴러 내려오는 고양이 — 이용자 55%만 AI로 맞혔습니다.",
     "sources": [
       {
         "label": "Count The Fingers · 진짜/AI 구분 게임",
@@ -227,28 +207,18 @@ window.QUESTIONS = [
     "licenseUrl": null
   },
   {
-    "id": "real-pair-03",
-    "category": "video",
+    "id": "ox-03",
+    "category": "ox",
     "number": 3,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "B · 눈밭의 아이와 황제펭귄",
-    "hint": "펭귄 날개에 무언가 달려 있나요? 배경 간판 글자, 고양이 앞발의 움직임도 끝까지 보세요.",
-    "explanation": "진짜는 B, 눈밭에서 황제펭귄과 노는 아이입니다. 펭귄 날개의 식별 밴드와 23초 내내 흐트러지지 않는 중국어 간판이 실제 촬영의 단서. A의 아기와 새끼 고양이는 AI 생성 영상입니다. 이용자 정답률은 펭귄 51%, 고양이 59%.",
-    "clips": [
-      {
-        "video": "assets/real-03-a.mp4",
-        "poster": "assets/real-03-a.jpg",
-        "real": false,
-        "label": "침대 위 아기와 새끼 고양이"
-      },
-      {
-        "video": "assets/real-03-b.mp4",
-        "poster": "assets/real-03-b.jpg",
-        "real": true,
-        "label": "눈밭의 아이와 황제펭귄"
-      }
-    ],
+    "title": "이 영상, 진짜일까요? 가짜일까요?",
+    "prompt": "실제로 촬영한 영상이면 O, AI가 만든 영상이면 X!",
+    "video": "assets/real-05-a.mp4",
+    "poster": "assets/real-05-a.jpg",
+    "real": true,
+    "scene": "공중에 얼어붙은 스파게티와 포크",
+    "answer": "O · 진짜 (실제 촬영)",
+    "hint": "말도 안 되는 장면… 그런데 날씨가 만든 기적일 수도?",
+    "explanation": "진짜입니다! 2026년 1월 23일 미국 미니애폴리스(최저 -29℃, 체감 -43℃)에서 기상캐스터 Jennifer McDermed가 찍은 영상으로, FOX Weather·Fox News가 보도했습니다. 삶은 스파게티가 포크를 든 채 그대로 얼어붙었습니다. 이용자 정답률 87%.",
     "sources": [
       {
         "label": "Count The Fingers · 진짜/AI 구분 게임",
@@ -259,28 +229,18 @@ window.QUESTIONS = [
     "licenseUrl": null
   },
   {
-    "id": "real-pair-04",
-    "category": "video",
+    "id": "ox-04",
+    "category": "ox",
     "number": 4,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "A · 코기 옆에서 기타 치는 사람",
-    "hint": "기타 줄을 짚는 손가락, 앵무새의 발과 TV 화면 속 움직임을 비교해 보세요.",
-    "explanation": "진짜는 A, 코기와 함께 기타를 치는 영상입니다. 손가락 운지와 강아지 움직임이 끝까지 자연스럽게 이어집니다. B의 춤추는 앵무새는 AI 생성 영상. 이용자 정답률은 기타 67%, 앵무새 67%.",
-    "clips": [
-      {
-        "video": "assets/real-04-a.mp4",
-        "poster": "assets/real-04-a.jpg",
-        "real": true,
-        "label": "코기 옆에서 기타 치는 사람"
-      },
-      {
-        "video": "assets/real-04-b.mp4",
-        "poster": "assets/real-04-b.jpg",
-        "real": false,
-        "label": "TV 속 마이클 잭슨을 따라 추는 앵무새"
-      }
-    ],
+    "title": "이 영상, 진짜일까요? 가짜일까요?",
+    "prompt": "실제로 촬영한 영상이면 O, AI가 만든 영상이면 X!",
+    "video": "assets/real-03-a.mp4",
+    "poster": "assets/real-03-a.jpg",
+    "real": false,
+    "scene": "침대 위 아기와 새끼 고양이",
+    "answer": "X · 가짜 (AI 생성)",
+    "hint": "고양이 앞발과 아기 손의 움직임을 끝까지 보세요.",
+    "explanation": "가짜(AI 생성)입니다. 침대 위 아기와 새끼 고양이 — 이용자 정답률 59%.",
     "sources": [
       {
         "label": "Count The Fingers · 진짜/AI 구분 게임",
@@ -291,68 +251,128 @@ window.QUESTIONS = [
     "licenseUrl": null
   },
   {
-    "id": "real-pair-05",
-    "category": "video",
+    "id": "ox-05",
+    "category": "ox",
     "number": 5,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "A · 공중에 얼어붙은 스파게티와 포크",
-    "hint": "말도 안 되는 장면이 둘. 한쪽은 날씨가 만든 기적, 한쪽은 너무 다정한 맹수입니다.",
-    "explanation": "진짜는 A! 2026년 1월 23일 미국 미니애폴리스(최저 -29℃, 체감 -43℃)에서 기상캐스터 Jennifer McDermed가 찍은 영상으로, FOX Weather·Fox News가 보도했습니다. 삶은 스파게티가 포크를 든 채 그대로 얼어붙었습니다. B의 흑곰 셀카는 AI 생성 영상. 이용자 정답률은 스파게티 87%, 흑곰 59%.",
-    "clips": [
-      {
-        "video": "assets/real-05-a.mp4",
-        "poster": "assets/real-05-a.jpg",
-        "real": true,
-        "label": "공중에 얼어붙은 스파게티와 포크"
-      },
-      {
-        "video": "assets/real-05-b.mp4",
-        "poster": "assets/real-05-b.jpg",
-        "real": false,
-        "label": "야생 흑곰과 껴안는 셀카"
-      }
-    ],
+    "title": "이 영상, 진짜일까요? 가짜일까요?",
+    "prompt": "실제로 촬영한 영상이면 O, AI가 만든 영상이면 X!",
+    "video": "assets/real-06-b.mp4",
+    "poster": "assets/real-06-b.jpg",
+    "real": true,
+    "scene": "타이어 속에 몸을 끼워 넣는 정비사",
+    "answer": "O · 진짜 (실제 촬영)",
+    "hint": "믿기 힘든 몸개그… 몸의 움직임이 물리적으로 자연스러운가요?",
+    "explanation": "진짜입니다! 타이어 가게 정비사가 타이어 안에 몸을 말아 넣고 굴러다니는 실제 영상. 믿기 힘든 쪽이 진짜일 수 있어요. 이용자 정답률 78%.",
     "sources": [
-      {
-        "label": "FOX Weather (X) · 2026-01-23 보도",
-        "url": "https://x.com/foxweather/status/2014888478966739245"
-      },
-      {
-        "label": "WION · Frozen spaghetti in Minneapolis",
-        "url": "https://www.wionews.com/world/minnesota-arctic-blast-frozen-pasta-polar-vortex-1769252077354"
-      },
       {
         "label": "Count The Fingers · 진짜/AI 구분 게임",
         "url": "https://countthefingers.com/"
       }
     ],
-    "credit": "원본: Jennifer McDermed(FOX 9 기상캐스터) 촬영 · FOX Weather 보도. Count The Fingers 문제 영상에서 방송 로고·화면 녹화 UI를 잘라내고 음소거·재인코딩(약 7초).",
+    "credit": "Count The Fingers(countthefingers.com) 문제 영상과 공개 정답·통계 기준. 원 게시자 미확인 — 행사 내부 진행용. 음소거·재인코딩(최대 20초).",
     "licenseUrl": null
   },
   {
-    "id": "real-pair-06",
-    "category": "video",
+    "id": "ox-06",
+    "category": "ox",
     "number": 6,
-    "title": "둘 중 진짜 영상은?",
-    "prompt": "두 영상 중 실제로 촬영된 영상 하나를 골라주세요. 나머지 하나는 AI 생성입니다.",
-    "answer": "B · 타이어 속에 몸을 끼워 넣는 정비사",
-    "hint": "둘 다 몸개그! 넘어지는 순간 몸과 주변 사람들의 반응이 물리적으로 자연스러운지 보세요.",
-    "explanation": "진짜는 B! 타이어 가게 정비사가 타이어 안에 몸을 말아 넣고 굴러다니는 실제 영상입니다. A의 호버보드 영상은 AI 생성 — 이용자 절반 이상(51%)이 진짜라고 속았습니다. 믿기 힘든 쪽이 진짜일 수 있어요. 타이어 영상 정답률 78%.",
-    "clips": [
+    "title": "이 영상, 진짜일까요? 가짜일까요?",
+    "prompt": "실제로 촬영한 영상이면 O, AI가 만든 영상이면 X!",
+    "video": "assets/real-01-a.mp4",
+    "poster": "assets/real-01-a.jpg",
+    "real": false,
+    "scene": "은하수 아래 밤바다 카약",
+    "answer": "X · 가짜 (AI 생성)",
+    "hint": "너무 아름다운 풍경. 화면이 지나치게 완벽하지 않나요?",
+    "explanation": "가짜(AI 생성)입니다. 은하수 아래 밤바다 카약 — 이용자 49%만 AI로 맞혔습니다.",
+    "sources": [
       {
-        "video": "assets/real-06-a.mp4",
-        "poster": "assets/real-06-a.jpg",
-        "real": false,
-        "label": "호버보드 타다 넘어지는 남성"
-      },
-      {
-        "video": "assets/real-06-b.mp4",
-        "poster": "assets/real-06-b.jpg",
-        "real": true,
-        "label": "타이어 속에 몸을 끼워 넣는 정비사"
+        "label": "Count The Fingers · 진짜/AI 구분 게임",
+        "url": "https://countthefingers.com/"
       }
     ],
+    "credit": "Count The Fingers(countthefingers.com) 문제 영상과 공개 정답·통계 기준. 원 게시자 미확인 — 행사 내부 진행용. 음소거·재인코딩(최대 20초).",
+    "licenseUrl": null
+  },
+  {
+    "id": "ox-07",
+    "category": "ox",
+    "number": 7,
+    "title": "이 영상, 진짜일까요? 가짜일까요?",
+    "prompt": "실제로 촬영한 영상이면 O, AI가 만든 영상이면 X!",
+    "video": "assets/real-05-b.mp4",
+    "poster": "assets/real-05-b.jpg",
+    "real": false,
+    "scene": "야생 흑곰과 껴안는 셀카",
+    "answer": "X · 가짜 (AI 생성)",
+    "hint": "야생 맹수가 이렇게까지 다정할까요?",
+    "explanation": "가짜(AI 생성)입니다. 야생 흑곰과 껴안는 셀카 — 너무 다정한 맹수. 이용자 정답률 59%.",
+    "sources": [
+      {
+        "label": "Count The Fingers · 진짜/AI 구분 게임",
+        "url": "https://countthefingers.com/"
+      }
+    ],
+    "credit": "Count The Fingers(countthefingers.com) 문제 영상과 공개 정답·통계 기준. 원 게시자 미확인 — 행사 내부 진행용. 음소거·재인코딩(최대 20초).",
+    "licenseUrl": null
+  },
+  {
+    "id": "ox-08",
+    "category": "ox",
+    "number": 8,
+    "title": "이 영상, 진짜일까요? 가짜일까요?",
+    "prompt": "실제로 촬영한 영상이면 O, AI가 만든 영상이면 X!",
+    "video": "assets/real-03-b.mp4",
+    "poster": "assets/real-03-b.jpg",
+    "real": true,
+    "scene": "눈밭의 아이와 황제펭귄",
+    "answer": "O · 진짜 (실제 촬영)",
+    "hint": "펭귄 날개에 무언가 달려 있나요? 배경 간판 글자도 끝까지 보세요.",
+    "explanation": "진짜입니다! 눈밭에서 황제펭귄과 노는 아이. 펭귄 날개의 식별 밴드와 23초 내내 흐트러지지 않는 중국어 간판이 실제 촬영의 단서입니다. 이용자 정답률 51%.",
+    "sources": [
+      {
+        "label": "Count The Fingers · 진짜/AI 구분 게임",
+        "url": "https://countthefingers.com/"
+      }
+    ],
+    "credit": "Count The Fingers(countthefingers.com) 문제 영상과 공개 정답·통계 기준. 원 게시자 미확인 — 행사 내부 진행용. 음소거·재인코딩(최대 20초).",
+    "licenseUrl": null
+  },
+  {
+    "id": "ox-09",
+    "category": "ox",
+    "number": 9,
+    "title": "이 영상, 진짜일까요? 가짜일까요?",
+    "prompt": "실제로 촬영한 영상이면 O, AI가 만든 영상이면 X!",
+    "video": "assets/real-06-a.mp4",
+    "poster": "assets/real-06-a.jpg",
+    "real": false,
+    "scene": "호버보드 타다 넘어지는 남성",
+    "answer": "X · 가짜 (AI 생성)",
+    "hint": "넘어지는 순간 몸과 주변 사람들의 반응이 물리적으로 자연스러운가요?",
+    "explanation": "가짜(AI 생성)입니다. 호버보드 타다 넘어지는 남성 — 이용자 절반 이상(51%)이 진짜라고 속았습니다.",
+    "sources": [
+      {
+        "label": "Count The Fingers · 진짜/AI 구분 게임",
+        "url": "https://countthefingers.com/"
+      }
+    ],
+    "credit": "Count The Fingers(countthefingers.com) 문제 영상과 공개 정답·통계 기준. 원 게시자 미확인 — 행사 내부 진행용. 음소거·재인코딩(최대 20초).",
+    "licenseUrl": null
+  },
+  {
+    "id": "ox-10",
+    "category": "ox",
+    "number": 10,
+    "title": "이 영상, 진짜일까요? 가짜일까요?",
+    "prompt": "실제로 촬영한 영상이면 O, AI가 만든 영상이면 X!",
+    "video": "assets/real-02-a.mp4",
+    "poster": "assets/real-02-a.jpg",
+    "real": true,
+    "scene": "금장식 의상을 입은 고양이",
+    "answer": "O · 진짜 (실제 촬영)",
+    "hint": "옷 장식과 고양이의 움직임이 끝까지 자연스러운가요?",
+    "explanation": "진짜입니다! 화려한 금장식 의상을 걸친 고양이. 이용자 정답률 61%.",
     "sources": [
       {
         "label": "Count The Fingers · 진짜/AI 구분 게임",
